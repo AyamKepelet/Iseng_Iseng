@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 10rem;
+            margin: 1rem;
+        }
+        label{
+            padding: 1rem;
+        }
+</style>
 </head>
 <body>
-    <form action="/form/users" method="POST">
+    <form action="/" method="POST">
+        <label for="Nama">Nama</label>
+        <textarea name="Name" title="Name"></textarea>
         <button type="submit">Click</button>
     </form>
 
