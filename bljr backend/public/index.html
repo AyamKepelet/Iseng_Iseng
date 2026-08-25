@@ -17,11 +17,18 @@
 </style>
 </head>
 <body>
-    <form action="/" method="POST">
+    <form action="/users" method="GET">
         <label for="Nama">Nama</label>
-        <textarea name="Name" title="Name"></textarea>
-        <button type="submit">Click</button>
+        <textarea name="Name" title="Name" id="User_inp1"></textarea>
+        <label for="Pekerjaan">Pekerjaan</label>
+        <textarea name="Pekerjaan" title="Pekerjaan" id="User_inp2"></textarea>
+        <button id="btn-Result" type="submit">Click</button>
     </form>
 
+    <p>Result</p>
+    <ul id="result">
+
+    </ul>
+    <script src="/script.js"></script>
 </body>
 </html>
