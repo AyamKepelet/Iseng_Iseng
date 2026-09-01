@@ -4,25 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        form{
-            display: flex;
-            flex-direction: column;
-            width: 10rem;
-            margin: 1rem;
-        }
-        label{
-            padding: 1rem;
-        }
-</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="/users" method="GET">
+    <form>
         <label for="Nama">Nama</label>
-        <textarea name="Name" title="Name" id="User_inp1"></textarea>
+        <input name="username" title="Name" id="User_inp1"></input>
         <label for="Pekerjaan">Pekerjaan</label>
-        <textarea name="Pekerjaan" title="Pekerjaan" id="User_inp2"></textarea>
-        <button id="btn-Result" type="submit">Click</button>
+        <input name="pekerjaan" title="Pekerjaan" id="User_inp2"></input>
+        <input id="btn-Result" type="submit" value="Submit">
     </form>
 
     <p>Result</p>
