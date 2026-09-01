@@ -7,8 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btn-Result").addEventListener("click", async (e) => {
         e.preventDefault()
     try{
-        
-
         const User_value1 = User_inp1.value
         const User_value2 = User_inp2.value        
 
@@ -25,15 +23,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 pekerjaan: User_value2
             })
         })
+        if(User_value1 === "" && User_value2 === ""){
+            alert("data tidak boleh kosong")
+        }else{
+            
         const users = await response.json()
         let li = document.createElement("li")
         const p1 = document.createElement("p")
-        p1.textContent = users.name
+        p1.textContent = User_value1
         const p2 = document.createElement("p")
-        p2.textContent = users.pekerjaan
+        p2.textContent = User_value2
         resultENV.append(li)
         li.appendChild(p1)
         li.appendChild(p2)
+
+        User_inp1.value = ""
+        User_inp2.value = ""
+        }
     } catch(e){
         console.error(error);
     }
