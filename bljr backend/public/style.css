@@ -1,3 +1,13 @@
+
+.open-sans-regular {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -18,10 +28,32 @@ textarea{
     padding: 0.5rem;
 }
 
-p{
-    margin-left: 4rem;
+.judul{
+    margin-left: 3rem;
+    margin-bottom: 1rem;
+    border: 1px solid black;
+    max-width: max-content;
 }
 
-ul{
-    margin-left: 4rem;
+table{
+    margin-left: 3rem;
+    border-collapse: collapse;
+    border: 1px black solid; 
+    max-width: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.result tr{
+    display: flex;
+    border: 1px black solid;
+}
+
+.result th{
+    padding-right: 1rem;
+}
+
+.result td{
+    padding-right: 2rem;
+    width: max-content;
 }

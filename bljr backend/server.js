@@ -36,6 +36,10 @@ app.post("/forms", (req,res) => {
     res.json(users)
 })
 
+app.delete("/forms/delete", (req,res) => {
+    console.log("test");
+})
+
 
 app.listen(3000,() => {
     console.log("http://localhost:3000");

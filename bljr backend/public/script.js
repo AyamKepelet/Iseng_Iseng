@@ -1,8 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const resultENV = document.getElementById("result")
+    const table = document.querySelector("table")
     const User_inp1 = document.getElementById("User_inp1")
     const User_inp2 = document.getElementById("User_inp2")
-    
+    function deleteContent(){
+        let btn = document.createElement("button")
+        btn.textContent = "delete"
+        btn.addEventListener("click",() => {
+        fetch("/forms/delete", {
+            method: "DELETE",
+        })
+
+        
+
+        })
+        return btn
+    }
+    let id = 0
 
     document.getElementById("btn-Result").addEventListener("click", async (e) => {
         e.preventDefault()
@@ -27,15 +40,20 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("data tidak boleh kosong")
         }else{
             
-        const users = await response.json()
-        let li = document.createElement("li")
-        const p1 = document.createElement("p")
-        p1.textContent = User_value1
-        const p2 = document.createElement("p")
-        p2.textContent = User_value2
-        resultENV.append(li)
-        li.appendChild(p1)
-        li.appendChild(p2)
+        await response.json()
+        let tr = document.createElement("tr")
+        const td1 = document.createElement("td")
+        td1.textContent = id++
+        const td2 = document.createElement("td")
+        td2.textContent = User_value1
+        const td3 = document.createElement("td")
+        td3.textContent = User_value2
+
+        table.append(tr)
+        tr.append(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        tr.appendChild(deleteContent())
 
         User_inp1.value = ""
         User_inp2.value = ""
@@ -44,5 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error(error);
     }
     })
+
+
 })
 
