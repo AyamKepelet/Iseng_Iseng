@@ -29,18 +29,26 @@ app.post("/forms", (req,res) => {
     const result = db.prepare(`
         INSERT INTO Karyawan(Name,Pekerjaan) VALUES(?,?)
         `).run(req.body.username,req.body.pekerjaan)
-        console.log("INSERT: ", result);
         
-
-    const users = db.prepare(`SELECT * FROM Karyawan`).all()
-    res.json(users)
+    res.json({
+        id: result.lastInsertRowid,
+        username: req.body.username,
+        pekerjaan: req.body.pekerjaan
+    })
 })
 
 app.delete("/forms/delete", (req,res) => {
-    console.log("test");
+    const {id} = req.body
+    console.log(id);
+    
+    const result = db.prepare(`
+    DELETE FROM Karyawan
+    WHERE id = ?`).run(id)
+    
+    res.json({
+        success: true
+    })
 })
-
-
 app.listen(3000,() => {
     console.log("http://localhost:3000");
 })

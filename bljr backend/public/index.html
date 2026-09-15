@@ -3,30 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>input data karyawan</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-    <form class="open-sans-regular">
-        <label for="Nama">Nama</label>
-        <input name="username" title="Name" id="User_inp1" required></input>
-        <label for="Pekerjaan">Pekerjaan</label>
-        <input name="pekerjaan" title="Pekerjaan" id="User_inp2" required></input>
-        <input id="btn-Result" type="submit" value="Submit">
-    </form>
+<body class="open-sans-regular">
+    <div class="container">
+        <h2>Tambah Data Karyawan</h2>
+        <form>
+            <div class="form-group">
+                <label for="User_inp1">Nama</label>
+                <input name="username" title="Name" id="User_inp1" required placeholder="Masukkan nama...">
+            </div>
+            
+            <div class="form-group">
+                <label for="User_inp2">Pekerjaan</label>
+                <input name="pekerjaan" title="Pekerjaan" id="User_inp2" required placeholder="Masukkan pekerjaan...">
+            </div>
 
-    <p class="judul open-sans-regular">Result</p>
-    <table class="open-sans-regular result">
-        <tr>
-            <th>Id</th>
-            <th>Nama</th>
-            <th>Pekerjaan</th>
-        </tr>
-        
-    </table>
+            <input id="btn-Result" class="SubmitBtn" type="submit" value="Submit">
+        </form>
+
+        <div class="header-action">
+            <h3 class="judul">Result</h3>
+        </div>
+
+        <table id="table" class="result">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nama</th>
+                    <th>Pekerjaan</th>
+                    <!-- <th>Ubah Data</th> -->
+                    <th>Hapus Data</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <ul id="displayData"></ul>
+    </div>
+
     <script src="/script.js"></script>
 </body>
 </html>
