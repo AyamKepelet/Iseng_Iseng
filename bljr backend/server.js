@@ -3,10 +3,12 @@ import Database from "better-sqlite3"
 const app = express()
 import path from "path"
 import { fileURLToPath } from "url"
+import cors from "cors"
 
 const __fileName = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__fileName)
 
+    app.use(cors())
     app.use(express.static("public"))
     app.use(express.urlencoded({extended: true}))
     app.use(express.json())
@@ -49,6 +51,12 @@ app.delete("/forms/delete", (req,res) => {
         success: true
     })
 })
+
+app.patch("/changes", (req,res) => {
+    console.log("berhasil");
+    
+})
+
 app.listen(3000,() => {
     console.log("http://localhost:3000");
 })

@@ -1,45 +1,104 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let table = document.getElementById("table")
     const User_inp1 = document.getElementById("User_inp1")
     const User_inp2 = document.getElementById("User_inp2")
-
-    let id = 0
+    let TableData = document.getElementById("TableData")
 
     document.getElementById("btn-Result").addEventListener("click", async (e) => {
         e.preventDefault()
     try{       
 
-        let User_value1 = User_inp1.value
-        let User_value2 = User_inp2.value
+        let UsernameInp = User_inp1.value
+        let PekerjaanInp = User_inp2.value
         
+
+        if(UsernameInp == "" || PekerjaanInp == ""){
+            alert("data tidak boleh kosong")
+        }else{
         const response = await fetch("/forms", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body:JSON.stringify({
-                username: User_value1,
-                pekerjaan: User_value2
+                username: UsernameInp,
+                pekerjaan: PekerjaanInp
             })
         })
-        if(!User_value1.trim() || !User_value2.trim()){
-            alert("data tidak boleh kosong")
-        }else{
+
         const data = await response.json()
         let tr = document.createElement("tr")
         tr.className = "headersTable"
         tr.dataset.id = data.id
-        tr.innerHTML = `
-            <td class="id">${data.id}</td>
-            <td>${data.username}</td>
-            <td>${data.pekerjaan}</td>
-            <td><button class="DelBtn">Delete</button></td>
-        `
+        let id =  document.createElement("td")
+        id.innerHTML = `<span class="id">${tr.dataset.id}</span>`
+        let tdUsername =  document.createElement("td")
+        tdUsername.innerHTML = `<span class="dataUser">${data.username}</span>`
+        let tdPekerjaan =  document.createElement("td")
+        tdPekerjaan.innerHTML = `<span class="dataPkr">${data.pekerjaan}</span>`
+        let changeBtn =  document.createElement("td")
+        changeBtn.innerHTML = `<button class="ChangeBtn">Ubah</button>`
+        let delBtn =  document.createElement("td")
+        delBtn.innerHTML = `<button class="DelBtn">Delete</button>`
+        tr.append(id,tdUsername,tdPekerjaan,changeBtn,delBtn)
         console.log(tr.dataset.id);
-        
-        table.appendChild(tr)
+        TableData.appendChild(tr)
         User_inp1.value = ""
         User_inp2.value = ""
+
+const modifyBtn = tr.querySelector(".ChangeBtn")
+modifyBtn.addEventListener("click", async () => {
+
+            const Username = tr.querySelector(".dataUser")
+            const Pekerjaan = tr.querySelector(".dataPkr")
+
+            if(modifyBtn.textContent !== "Accept"){
+            Username.innerHTML = `<input class = "modifUser" value="${UsernameInp}">`
+            Pekerjaan.innerHTML = `<input class = "modifPkr" value="${PekerjaanInp}">`
+            modifyBtn.textContent = "Accept"
+            return
+            }
+
+
+            const UsernameValue = Username.querySelector(".modifUser")
+            const PekerjaanValue = Pekerjaan.querySelector(".modifPkr")
+            
+            const UpdateUsername = UsernameValue.value.trim()
+            const UpdatePekerjaan = PekerjaanValue.value.trim()
+
+
+            if(!UpdateUsername || !UpdatePekerjaan){
+                alert("Masukkan data yang ingin diubah")
+                return
+            }
+            console.log("line kirim");
+            try{
+                
+            if(modifyBtn.innerHTML !== "Ubah"){
+            Username.innerHTML = UpdateUsername
+            Pekerjaan.innerHTML = UpdatePekerjaan
+            modifyBtn.textContent = "Ubah"
+            return
+            }
+            const responses = await fetch("/changes", {
+            method: "PATCH",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({
+            username: UpdateUsername,
+            pekerjaan: UpdatePekerjaan
+                    })
+                })
+            if(!responses.ok){
+                console.log("gagal menyimpan", responses.status);
+                return
+            }
+            await responses.json()
+
+            }catch(error){
+                console.error("ada masalah", error);
+            }
+})
 
         const deleteBtn = tr.querySelector(".DelBtn")
         deleteBtn.addEventListener("click", async () => {
@@ -58,29 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
         }
     } catch(e){
-        console.error(error);
-    }
-    })
-
-    document.getElementById("DisplayBtn").addEventListener("click", async () => {
-        const ul = document.getElementById("displayData")
-        try{
-        const response = await fetch("/displays/data", {
-            method: "GET",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify({
-                id,
-                username,
-                pekerjaan
-            })
-            
-        })
-            console.log(body.id);
-        response.json()
-        }catch(err){
-        console.log("gagal menampilkan data");
+        console.error(e);
     }
     })
 })

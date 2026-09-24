@@ -1,63 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-.open-sans-regular {
+body {
   font-family: "Open Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-}
-body{
-    display: flex;
-    justify-content: center;
-}
-
-.container{
-    height: max-content;
-    width: max-content;
-    padding: 2rem;
-    margin: 3rem;
-    background-color: black;
+.container {
+  width: 100%;
+  max-width: 40rem;
+  padding: 2rem;
+  background-color: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
 }
 
-.form-group{
-    display: flex;
-    flex-direction: column;
-    width: 20rem + 100%;
-    height: 5rem;
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
 }
-.form-group input{
-    height: 100%;
-    font-size: 1rem;
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
-.SubmitBtn{
-    font-size: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding: 0.2rem;
+
+.form-group label {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
 }
+
+.form-group input {
+  height: 2.4rem;
+  font-size: 1rem;
+  padding: 0 0.6rem;
+  border: 1px solid #b3b3b3;
+  border-radius: 4px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.SubmitBtn {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.SubmitBtn:hover {
+  background-color: #000;
+}
+
+.header-action {
+  margin-bottom: 0.75rem;
+}
+
+.judul {
+  font-size: 1.1rem;
+}
+
 .result {
-    display: flex;
-    flex-direction: column;
-    width: max-content + 100%;
-    background-color: gray;
-}
-.result th {
-    padding-right: 1rem;
-    font-size: 1.2rem;
-    max-width: 100%;
-}
-.result td {
-    max-width: 100%;
-    font-size: 1.2rem;
-    padding-right: 3rem;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-thead tr th{
-    border: 1px black solid;
+.result th,
+.result td {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #d9d9d9;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.result th {
+  background-color: #f2f2f2;
+}
+
+.result .empty-row td {
+  text-align: center;
+  color: #808080;
+  padding: 1rem;
+}
+
+.btn-hapus,
+.btn-ubah {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.6rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 0.3rem;
+}
+
+.btn-hapus {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+.btn-ubah {
+  background-color: #f0ad4e;
+  color: #fff;
 }
