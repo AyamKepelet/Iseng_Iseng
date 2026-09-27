@@ -4,6 +4,7 @@ const app = express()
 import path from "path"
 import { fileURLToPath } from "url"
 import cors from "cors"
+import { type } from "os"
 
 const __fileName = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__fileName)
@@ -25,9 +26,6 @@ db.exec(`
 
 
 app.post("/forms", (req,res) => {
-    console.log("POST /forms terpanggil")
-    console.log(req.body);
-    
     const result = db.prepare(`
         INSERT INTO Karyawan(Name,Pekerjaan) VALUES(?,?)
         `).run(req.body.username,req.body.pekerjaan)
@@ -52,9 +50,21 @@ app.delete("/forms/delete", (req,res) => {
     })
 })
 
-app.patch("/changes", (req,res) => {
-    console.log("berhasil");
-    
+app.patch("/forms/changes", (req,res) => {
+        const {id} = req.body
+        console.log(typeof req.body.username);
+        console.log(typeof req.body.pekerjaan);
+        console.log(typeof req.body);
+        
+        const update = db.prepare(`
+            UPDATE Karyawan
+            SET Name = ?, Pekerjaan = ?
+            WHERE id = ?
+            `)
+        update.run(req.body.username,req.body.pekerjaan,id)
+        
+        const currentRows = db.prepare(`SELECT * FROM Karyawan Where id = ?`).get(id)
+        console.log(currentRows);
 })
 
 app.listen(3000,() => {

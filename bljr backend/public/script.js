@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const modifyBtn = tr.querySelector(".ChangeBtn")
 modifyBtn.addEventListener("click", async () => {
-
+            const id = tr.dataset.id
             const Username = tr.querySelector(".dataUser")
             const Pekerjaan = tr.querySelector(".dataPkr")
 
@@ -58,7 +58,7 @@ modifyBtn.addEventListener("click", async () => {
             return
             }
 
-
+            
             const UsernameValue = Username.querySelector(".modifUser")
             const PekerjaanValue = Pekerjaan.querySelector(".modifPkr")
             
@@ -72,19 +72,20 @@ modifyBtn.addEventListener("click", async () => {
             }
             console.log("line kirim");
             try{
-                
+
             if(modifyBtn.innerHTML !== "Ubah"){
             Username.innerHTML = UpdateUsername
             Pekerjaan.innerHTML = UpdatePekerjaan
             modifyBtn.textContent = "Ubah"
-            return
-            }
-            const responses = await fetch("/changes", {
+            
+            
+            const responses = await fetch("/forms/changes", {
             method: "PATCH",
             headers: {
-                "Content-Type" : "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
+            id: id,
             username: UpdateUsername,
             pekerjaan: UpdatePekerjaan
                     })
@@ -94,7 +95,8 @@ modifyBtn.addEventListener("click", async () => {
                 return
             }
             await responses.json()
-
+            return
+            }
             }catch(error){
                 console.error("ada masalah", error);
             }
